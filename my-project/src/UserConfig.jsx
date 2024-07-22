@@ -1,29 +1,33 @@
 import { useState } from 'react'
 import './UserConfig.css'
 import React, { Component } from 'react'
+import * as axios from 'axios'
+
+const client = axios.default;
 
 function UserConfig() {
   const [count, setCount] = useState(0);
     function handleLogin() {
         //TODO:
-        console.log("login");
-    }
+        client.get('http://127.0.0.1:7001/')
+        .then ((response) => {
+            console.log(response.data);
+        })
+  }
 
     function handleRegister() {
         //TODO:
-        console.log("register");
     }
 
     function handleForgetPassword() {
         //TODO:
         console.log("forget password");
     }
-
     return (
     <>
     <nav className="top-nav">
         <ul>
-            <li><a href="todo">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li><a href="todo">关于</a></li>
             <li><a href="todo">帮助</a></li>
             <li><a href="todo">联系我们</a></li>
