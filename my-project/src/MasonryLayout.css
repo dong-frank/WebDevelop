@@ -1,0 +1,16 @@
+.masonry-item {
+    width: 350px;
+    max-height: 400px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    /* 设置项目之间的间距 */
+    box-sizing: border-box;
+    /* 确保 padding 和 border 包含在宽度和高度内 */
+    background-color: white;
+    /* 设置背景颜色 */
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    /* align-items: center;
+    justify-content: center; */
+}

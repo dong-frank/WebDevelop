@@ -1,0 +1,30 @@
+.masonry {
+    position: relative;
+    left: 100px;
+}
+
+
+
+.masonry-item img {
+    width: 100%;
+    /* 根据需要调整图片宽度 */
+    height: auto;
+    /* 保持图片比例 */
+    margin-bottom: 8px;
+    /* 图片与标题之间的间距 */
+    margin-top: 0;
+}
+
+.masonry-item h {
+    font-size: 25px;
+    /* 标题字体大小 */
+    margin: 0;
+    /* 重置标题的 margin */
+}
+
+.masonry-item p {
+    font-size: 20px;
+    /* 摘要字体大小 */
+    margin: 0;
+    /* 重置摘要的 margin */
+}
