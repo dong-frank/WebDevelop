@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import './Publish.css'
 import { useNavigate } from 'react-router-dom'
+import SideNav from './SideNav'
 
 function Publish() {
   const [count, setCount] = useState(0)
@@ -9,12 +10,10 @@ function Publish() {
 
   return (
     <>
-      <div class="side-nav">
-        <button className='home' onClick={()=> navigate('/')}>首页</button>
-        <button className='my-interest' onClick={()=> navigate('/')}>我的兴趣圈</button>
-        <button className='explore' onClick={()=> navigate('/')}>探索</button>
-        <button className='publish' onClick={()=> navigate('/')}>发表</button>
-        </div>
+        <SideNav />
+        <img className='test_img' src=''/>
+        
+        
         </>
   )
 }

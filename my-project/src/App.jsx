@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { useNavigate } from 'react-router-dom'
 import LoginModal from './LoginModal'
+import SideNav from './SideNav'
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,15 +34,7 @@ function App() {
 
   return (
     <>
-      <div class="side-nav">
-        <button className='home' onClick={()=> navigate('/')}>首页</button>
-        <button className='my-interest' onClick={()=> navigate('/')}>我的兴趣圈</button>
-        <button className='explore' onClick={()=> navigate('/')}>探索</button>
-        <button className='publish' onClick={()=> navigate('/publish')}>发表</button>
-
-
-      </div>
-      <h1 className='title'>兴趣圈</h1>
+      <SideNav />
       <div className="login-container">
         <button className='login' onClick={openModal}>
           登录
