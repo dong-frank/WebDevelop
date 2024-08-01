@@ -1,17 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState , useContext } from 'react'
 import './App.css'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from './UserContext'
 import LoginModal from './LoginModal'
 import SideNav from './SideNav'
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
+  
+  
+  const openModal = () => {setIsModalOpen(true)};
   const closeModal = () => setIsModalOpen(false);
   const navigate = useNavigate()
   //TODO:
-  const userName = 'admin'
+  const {userData} = useContext(UserContext);
+  const userName = userData ? userData.username : '请先登录';
 
   useEffect(() => {
   const carouselItem = document.querySelector('.carousel-item');
