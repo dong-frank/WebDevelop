@@ -20,11 +20,20 @@ function LoginModal({ isOpen, onClose }) {
                 username,
                 password,
             });
-            console.log('Login successful');
+            
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+
             alert('登录成功');
             
-            const userData = await client.get('http://127.0.0.1:7001/api/userdata')
+            const userData = await client.get('http://127.0.0.1:7001/api/userdata' , {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
             setUserData(userData.data)
+            console.log('userData', userData.data);
             onClose();
         } catch (error) {
             console.error('Login failed', error.response.data.message);

@@ -1,8 +1,9 @@
-import { Controller , Post , Body , Provide , Inject, Get} from "@midwayjs/core";
+import { Controller , Post , Body , Provide , Inject, Get, Headers } from "@midwayjs/core";
 import { Context } from "@midwayjs/koa";
 import { AppDataSource } from "../db";
 import { User } from "../entity/user";
 import * as jwt from "jsonwebtoken";
+import { JwtPayload } from "jsonwebtoken";
 
 @Provide()
 @Controller("/api")
@@ -15,16 +16,12 @@ export class LoginController {
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
     }
-    console.log(AppDataSource.isInitialized); // 检查数据源是否已初始化
-    console.log(AppDataSource.options.entities); // 检查实体是否已加载
-    console.log(User); // 检查 User 实体是否正确导入
+    
     const { username , password } = body;
     const userRepository = AppDataSource.getRepository(User);
 
 
     const user = await userRepository.findOne({ where: {username}});  
-    const users = await userRepository.find();
-    console.log(users); // 打印所有用户信息
 
     if (!user) {
       this.ctx.status = 401;
@@ -44,7 +41,24 @@ export class LoginController {
   }
 
   @Get("/userdata")
-    async getUserData() {
-        return { username: "admin", avatarUrl: "https://avatars0.githubusercontent.com/u/29393772?s=460&v=4", interests: ["前端", "后端"] };
+    async getUserData(@Headers('authorization') token: string) {
+
+      if (!token){
+        this.ctx.status = 401;
+        return { message: "未登录" };
+      }
+
+      try {
+        const tokenWithoutBearer = token.replace('Bearer ', '');
+            const decoded = jwt.verify(tokenWithoutBearer, 'your_jwt_secret') as JwtPayload;
+            
+            return {
+              username: decoded.username,
+              id: decoded.id
+            };
+      }catch (error) {
+        this.ctx.status = 401;
+        return { message: "未登录" };
     }
+  }
 }

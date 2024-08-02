@@ -3,6 +3,8 @@ import add_Img from './assets/add_image.svg'
 import './Publish.css'
 import { useNavigate } from 'react-router-dom'
 import SideNav from './SideNav'
+import * as axios from 'axios'
+const client = axios.default;
 
 function Publish() {
   const [count, setCount] = useState(0)
@@ -23,10 +25,25 @@ function Publish() {
     );
   };
 
-  const handlePublish = () => {
-    // 发布逻辑
-    console.log('title:', title);
-    console.log('content:', content);
+  const handlePublish = async () => {
+
+    try {
+      const response = await client.post('http://127.0.0.1:7001/api/publish', {
+        title,
+        content,
+        tags: selectedTags,
+        images: "default",
+        token: localStorage.getItem('token'),
+      });
+      alert(response.data.message);
+      setTitle('');
+      setContent('');
+      setSelectedTags([]);
+    } catch (error) {
+      console.error('Publish failed', error.response.data.message);
+      alert('发布失败');
+    }
+    
   }
 
   return (

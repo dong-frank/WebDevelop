@@ -1,6 +1,7 @@
 // db.js
 const { DataSource } = require('typeorm');
 const { User } = require('./entity/user'); 
+const { Article } = require('./entity/article');
 // 创建数据源
 const AppDataSource = new DataSource({
   type: 'mysql',
@@ -11,7 +12,7 @@ const AppDataSource = new DataSource({
   database: 'webdatabase',
   synchronize: true,
   logging: false,
-  entities: [User],
+  entities: [User , Article],
   migrations: ["src/migration/**/*.js"],
   subscribers: ["src/subscriber/**/*.js"],
 });
