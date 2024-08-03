@@ -1,4 +1,4 @@
-import { Controller , Post , Body , Provide , Inject} from "@midwayjs/core";
+import { Controller , Post , Body , Provide , Inject, Files, } from "@midwayjs/core";
 import { Context } from "@midwayjs/koa";
 import { AppDataSource } from "../db";
 import { User } from "../entity/user";
@@ -13,12 +13,13 @@ export class PublishController {
     ctx: Context;
 
     @Post("/publish")
-    async publish(@Body() body:{title:string,content:string,tags:string,images:string,token:string}) {
+    async publish(@Body() body:{title:string,content:string,tags:string,token:string},
+                    @Files() images: any) {
         if (!AppDataSource.isInitialized) {
             await AppDataSource.initialize();
         }
 
-        const { title , content , tags , images , token } = body;
+        const { title , content , tags  , token } = body;
         const userRepository = AppDataSource.getRepository(User);
 
         const tokenWithoutBearer = token.replace('Bearer ', '');
@@ -37,7 +38,7 @@ export class PublishController {
             title,
             content,
             tags,
-            images,
+            images: images.map(file => file.filepath),
             author_id: user.id,
             likes: 0,
             comments_count: 0,

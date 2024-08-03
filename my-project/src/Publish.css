@@ -1,82 +1,167 @@
-
-.test_img {
-    position: absolute;
-    top: 50px;
-    left: 250px;
-    width: 140px;
-    height: 100px;
-    border-radius: 10px;
-    background-size: cover;
+.image-input {
+  display: none;
 }
 
-.add_img {
-    position: absolute;
-    background-color:whitesmoke;
-    top: 50px;
-    left: 420px;
-    width: 140px;
-    height: 100px;
-    border-radius: 10px;
-    background-size: cover;
+.image-input-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 250px;
+  width: 100px;
+  height: 100px;
+  background-image: url('./assets/add_image.svg');
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 2px solid #dfdcdc;
+  /* 添加边框 */
+  border-radius: 5px;
+  /* 可选：添加圆角 */
+  box-shadow: 0 4px 8px rgba(219, 218, 218, 0.1);
+  /* 可选：添加阴影 */
+  z-index: 2;
+}
+
+.image-previews {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: absolute;
+  top: 50px;
+  left: 250px;
+  z-index: 1;
+}
+
+.image-preview-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image_preview {
+  width: 100px; /* 固定宽度 */
+  height: 100px; /* 固定高度 */
+  border: 2px solid #dfdcdc;
+  /* 添加边框 */
+  border-radius: 5px;
+  /* 可选：添加圆角 */
+  box-shadow: 0 4px 8px rgba(219, 218, 218, 0.1);
+  /* 可选：添加阴影 */
+  z-index: 1;
+  cursor: pointer;
+}
+
+.remove-image {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: white;
+  background-color: rgb(56, 62, 46);
+  border-radius: 50%;
+  padding: 1px 3px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 16px;
+}
+
+/* 模态框背景 */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 模态框内容 */
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit : contain;
+}
+
+/* 关闭按钮 */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .title_input {
-    position: absolute;
-    top: 165px;
-    left: 250px;
-    width: 700px;
-    height: 30px;
-    border: none;
-    padding: 5px;
-    border-bottom: 1px solid black;
+  position: absolute;
+  top: 165px;
+  left: 250px;
+  width: 700px;
+  height: 30px;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid black;
 }
 
 .content_input {
-    position: absolute;
-    top: 200px;
-    left: 250px;
-    width: 700px;
-    height: 300px;
-    border: none;
-    border-bottom: 1px solid black;
-    padding: 5px;
-    text-align: left;
-    resize: none;
+  position: absolute;
+  top: 200px;
+  left: 250px;
+  width: 700px;
+  height: 300px;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  text-align: left;
+  resize: none;
 }
+
 .title_input::placeholder {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .content_input::placeholder {
-    font-size: 15px;
-    text-align: left;
+  font-size: 15px;
+  text-align: left;
 }
 
 
 .tags {
-    position: fixed;
-    top: 280px;
-    left: 2px;
-    font-size: 20px;
-  }
+  position: fixed;
+  top: 280px;
+  left: 2px;
+  font-size: 20px;
+}
 
-  .tags h2 {
-    background-image: url('./assets/tags.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    text-align: left;
-    margin-left: 8px;
-    font-size: 20px;
-    padding-left: 30px;
-  }
+.tags h2 {
+  background-image: url('./assets/tags.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: left;
+  margin-left: 8px;
+  font-size: 20px;
+  padding-left: 30px;
+}
 
-  .tag {
-    margin: 5px;
-    padding: 5px 10px; /* 调整标签按钮的内边距 */
-    font-size: 10px; /* 调整标签按钮的字体大小 */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
+.tag {
+  margin: 5px;
+  padding: 5px 10px;
+  /* 调整标签按钮的内边距 */
+  font-size: 10px;
+  /* 调整标签按钮的字体大小 */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .tag.selected {
@@ -92,7 +177,7 @@
   font-size: 20px;
 }
 
-.atfriends button{
+.atfriends button {
   margin: 5px;
   padding: 5px 10px;
   font-size: 20px;
@@ -101,7 +186,7 @@
   cursor: pointer;
 }
 
-.publish-button button{
+.publish-button button {
   position: fixed;
   top: 450px;
   left: 2px;
@@ -113,7 +198,7 @@
   cursor: pointer;
 }
 
-.draft-button button{
+.draft-button button {
   position: fixed;
   top: 450px;
   left: 100px;
