@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './Publish.css'
 import { useNavigate } from 'react-router-dom'
 import SideNav from './SideNav'
+import TopNav from './TopNav'
 import * as axios from 'axios'
 const client = axios.default;
 
@@ -50,26 +51,37 @@ function Publish() {
   const handlePublish = async () => {
 
     const formData = new FormData();
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (!token) {
-      alert('缺少 token,请先登录');
+      alert('用户不存在,请先注册或登录');
       return;
     }else{
       console.log('token:',token);
     }
+    if(!title){
+      alert('标题不能为空');
+      return;
+    }
     formData.append('title', title);
+    if(!content){
+      content=title;
+    }
     formData.append('content', content);
     formData.append('tags', JSON.stringify(selectedTags));
     formData.append('token', token);
-
+    if (images.length === 0) {
+      images[0]=null;
+    }
     images.forEach((image, index) => {
       formData.append(`images[${index}]`, image);
     });
-
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
     try {
-      const response = await client.post('http://127.0.0.1:7001/api/publish', {
+      const response = await client.post('http://127.0.0.1:7001/api/publish', formData,{
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer your-jwt-token`,
         },
       });
       alert(response.data.message);
@@ -78,8 +90,7 @@ function Publish() {
       setSelectedTags([]);
       setImages([]);
     } catch (error) {
-      console.error('Publish failed', error.response.data.message);
-      alert('发布失败');
+      alert('发布失败' + error.response.data.message);
     }
 
   }
@@ -99,6 +110,7 @@ function Publish() {
   return (
     <>
       <SideNav />
+      <TopNav />
       <div className='image-upload'>
         <div className='image-input-wrapper' style={{ left: `${250 + images.length * 110}px` }} onClick={() => document.getElementById('file').click()}>
           <input className='image-input' type='file' id='file' accept='image/*' onChange={handleImageChange} />

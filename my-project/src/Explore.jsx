@@ -1,4 +1,5 @@
 import SideNav from "./SideNav";
+import TopNav from "./TopNav";
 import React from 'react';
 import MasonryLayout from "./MasonryLayout";
 import './Explore.css';
@@ -17,6 +18,7 @@ function Explore() {
   return (
     <>
     <SideNav />
+    <TopNav />
     <div className="masonry">
       <MasonryLayout items={items} />
     </div>

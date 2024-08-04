@@ -2,6 +2,7 @@
 const { DataSource } = require('typeorm');
 const { User } = require('./entity/user'); 
 const { Article } = require('./entity/article');
+const { default: test } = require('node:test');
 // 创建数据源
 const AppDataSource = new DataSource({
   type: 'mysql',
@@ -26,8 +27,13 @@ AppDataSource.initialize().then(() => {
   user.password = 'rds364408';
   user.avatar = 'default';
 
+  const tester = new User();
+  tester.username = 'test';
+  tester.password = '1';
+  tester.avatar = 'default';
   // 保存新用户到数据库
   AppDataSource.manager.save(user);
+  AppDataSource.manager.save(tester);
   console.log('New User has been saved');
   
 }).catch((error) => {

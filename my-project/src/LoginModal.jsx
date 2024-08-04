@@ -22,7 +22,7 @@ function LoginModal({ isOpen, onClose }) {
             });
             
             const token = response.data.token;
-            localStorage.setItem('token', token);
+            sessionStorage.setItem('token', token);
 
             alert('登录成功');
             
@@ -33,7 +33,6 @@ function LoginModal({ isOpen, onClose }) {
             });
 
             setUserData(userData.data)
-            console.log('userData', userData.data);
             onClose();
         } catch (error) {
             console.error('Login failed', error.response.data.message);

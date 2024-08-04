@@ -1,10 +1,11 @@
-import { Controller , Post , Body , Provide , Inject, Files, } from "@midwayjs/core";
+import { Controller, Post, Provide, Inject, Fields } from "@midwayjs/core";
 import { Context } from "@midwayjs/koa";
 import { AppDataSource } from "../db";
 import { User } from "../entity/user";
 import { Article } from "../entity/article";
 import * as jwt from "jsonwebtoken";
 import { JwtPayload } from "jsonwebtoken";
+
 
 @Provide()
 @Controller("/api")
@@ -13,28 +14,35 @@ export class PublishController {
     ctx: Context;
 
     @Post("/publish")
-    async publish(@Body() body:{title:string,content:string,tags:string,token:string},
-                    @Files() images: any) {
+    async publish(@Fields() fields: any,) {
         if (!AppDataSource.isInitialized) {
             await AppDataSource.initialize();
         }
 
-        const { title , content , tags  , token } = body;
+        const { title, content, tags, token } = fields;
+
+        const images = Object.keys(fields)
+            .filter(key => key.startsWith('images['))
+            .map(key => fields[key]);
+
+        let decoded: JwtPayload;
+        try {
+            decoded = jwt.verify(token, 'your_jwt_secret') as JwtPayload;
+        } catch (err) {
+            console.error(err);
+            this.ctx.status = 401;
+            return { message: '用户不存在,请先注册或登录' };
+        }
         const userRepository = AppDataSource.getRepository(User);
-
-        const tokenWithoutBearer = token.replace('Bearer ', '');
-        const decoded = jwt.verify(tokenWithoutBearer, 'your_jwt_secret') as JwtPayload;
-
-        const user = await userRepository.findOne({ where: {id: decoded.id}});
+        const user = await userRepository.findOne({ where: { id: decoded.id } });
 
         if (!user) {
-            this.ctx.status = 401;
-            return { message: "未登录,请先登录" };
+            this.ctx.status = 404;
+            return { message: '用户不存在,请先注册或登录' };
         }
 
         const articleRepository = AppDataSource.getRepository(Article);
         const article = articleRepository.create({
-            id: 0,
             title,
             content,
             tags,

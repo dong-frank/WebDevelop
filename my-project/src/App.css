@@ -4,40 +4,6 @@
   padding: 2rem;
   text-align: center;
 }
-.login-container {
-  position: absolute;
-  top: 1px;
-  left: 210px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.login-container button {
-  margin-right: 15px;
-  margin-top: 10px;
-  height: 30px;
-  padding: 5px 10px;
-  text-align: center;
-  display: inline-block;
-  line-height: 20px;
-  outline: none;
-}
-
-.login-container img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-.welcome-back {
-  position: absolute;
-  top: 13px;
-  left: 120px;
-  font-size: 15px;
-  white-space: nowrap;
-}
 
 
 .carousel {
@@ -49,7 +15,7 @@
   overflow: hidden;
 }
 
-.carousel-item{
+.carousel-item {
   display: flex;
   transition: transform 0.5s ease;
 }
