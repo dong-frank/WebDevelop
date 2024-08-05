@@ -21,9 +21,21 @@ export class PublishController {
 
         const { title, content, tags, token } = fields;
 
+        // const images = Object.keys(fields)
+        //     .filter(key => key.startsWith('images['))
+        //     .map(key => fields[key]);
+
         const images = Object.keys(fields)
             .filter(key => key.startsWith('images['))
-            .map(key => fields[key]);
+            .map(key => {
+                const index = key.match(/\d+/)[0]; // 提取索引
+                return {
+                    index: parseInt(index, 10),
+                    url: fields[key]
+                };
+            })
+            .sort((a, b) => a.index - b.index) // 按索引排序
+            .map(image => image.url); // 只保留 URL
 
         let decoded: JwtPayload;
         try {
@@ -46,14 +58,14 @@ export class PublishController {
             title,
             content,
             tags,
-            images: images.map(file => file.filepath),
+            images,
             author_id: user.id,
             likes: 0,
             comments_count: 0,
             created_at: new Date(),
             updated_at: new Date()
         });
-
+        console.log(article.images);
         await articleRepository.save(article);
 
         return { message: "发布成功" };
