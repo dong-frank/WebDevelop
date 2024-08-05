@@ -15,7 +15,7 @@ function Explore() {
         // 处理成功响应
         const articles = response.data.data;
         const formattedItems = articles.map((article, index) => (
-          console.log(article.images),
+          // console.log(article.images),
           <div key={index} className="masonary-item">
             <img src={article.images} alt={article.title} />
             <h>{article.title}</h>

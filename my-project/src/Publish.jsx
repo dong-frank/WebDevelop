@@ -14,13 +14,19 @@ function Publish() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [isListOpen, setIsListOpen] = useState(false);
   const [title, setTitle] = useState('');
+  const [files, setFiles] = useState([]);
   const [content, setContent] = useState('');
+  const [originalFiles, setOriginalFiles] = useState([]);
   const toggleList = () => {
     setIsListOpen(!isListOpen);
   }
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    const newImages = files.map((file) => {
+    const selectedFiles = Array.from(e.target.files);
+    
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    console.log('files:', files);
+
+    const newImages = selectedFiles.map((file) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       return new Promise((resolve) => {
@@ -39,14 +45,30 @@ function Publish() {
         }
         return [...prevImages, ...imagePreviews];
       });
+
+      setOriginalFiles((prevFiles) => {
+        const totalFiles = prevFiles.length + selectedFiles.length;
+        if (totalFiles > 6) {
+          return prevFiles;
+        }
+        return [...prevFiles, ...selectedFiles];
+      });
+
     });
   };
 
-  const handleTagSelection = (tag) => {
-    setSelectedTags((prevTags) =>
-      prevTags.includes(tag) ? prevTags.filter((t) => t !== tag) : [...prevTags, tag]
-    );
-  };
+  async function uploadImageToServer(image) {
+    const formData = new FormData();
+    console.log('image:', image);
+      formData.append('image', image);
+    const response = await client.post('http://127.0.0.1:3000/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    console.log(response.data.imageUrl);
+    return response.data.imageUrl;
+  }
 
   const handlePublish = async () => {
 
@@ -64,7 +86,7 @@ function Publish() {
     }
     formData.append('title', title);
     if(!content){
-      content=title;
+      setContent(title);
     }
     formData.append('content', content);
     formData.append('tags', JSON.stringify(selectedTags));
@@ -72,8 +94,14 @@ function Publish() {
     if (images.length === 0) {
       images[0]=null;
     }
-    images.forEach((image, index) => {
-      formData.append(`images[${index}]`, image);
+    const imageUrls = await Promise.all(
+      images.map(async (image, index) => {
+        return await uploadImageToServer(files[index]);
+      })
+    );
+
+    imageUrls.forEach((url, index) => {
+      formData.append(`images[${index}]`, url);
     });
     for (let pair of formData.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
