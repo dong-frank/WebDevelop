@@ -1,0 +1,157 @@
+.article-title{
+    position: absolute;
+    display: flex;
+    top: 30px;
+    left: 260px;
+    white-space: nowrap;
+}
+.title {
+    position: inherit;
+    font-size: 24px; /* 设置标题字体大小 */
+    color: #333; /* 设置标题字体颜色 */
+}
+
+.time {
+    position: inherit;
+    top: 80px; /* 设置时间距离顶部的距离 */
+    left: 10px; /* 设置时间距离左侧的距离 */
+    font-size: 12px; /* 设置时间字体大小 */
+    color: #999; /* 设置时间字体颜色 */
+}
+
+.view {
+    position: inherit;
+    top: 80px; /* 设置浏览量距离顶部的距离 */
+    left: 150px; /* 设置浏览量距离左侧的距离 */
+    font-size: 12px; /* 设置浏览量字体大小 */
+    color: #999; /* 设置浏览量字体颜色 */
+}
+
+.like {
+    position: inherit;
+    top: 80px; /* 设置点赞量距离顶部的距离 */
+    left: 230px; /* 设置点赞量距离左侧的距离 */
+    font-size: 12px; /* 设置点赞量字体大小 */
+    color: #999; /* 设置点赞量字体颜色 */
+}
+
+.comment {
+    position: inherit;
+    top: 80px; /* 设置评论量距离顶部的距离 */
+    left: 310px; /* 设置评论量距离左侧的距离 */
+    font-size: 12px; /* 设置评论量字体大小 */
+    color: #999; /* 设置评论量字体颜色 */
+}
+
+.author{
+    position: absolute;
+    display: flex;
+    top: 150px;
+    left: 270px;
+    width: 70%;
+    white-space: nowrap;
+    border-bottom: 1px solid #b5b3b3; /* 设置作者信息下方的边框 */
+    padding-bottom: 10px
+}
+
+.author-avatar {    
+    width: 30px; /* 设置头像宽度 */
+    height: 30px; /* 设置头像高度 */
+    border-radius: 50%; /* 设置头像为圆形 */
+    margin-right: 10px; /* 设置头像与名字之间的间距 */
+}
+
+.author-name {
+    position: inherit;
+    left: 50px; /* 设置名字距离头像的距离 */
+    font-size: 18px; /* 设置名字字体大小 */
+    color: #333; /* 设置名字字体颜色 */
+}
+
+.follow-author {
+    position: inherit;
+    left: 690px; /* 设置关注按钮距离头像的距离 */
+    font-size: 12px; /* 设置关注按钮字体大小 */
+    color: white; /* 设置关注按钮字体颜色 */
+    background-color: rgb(243, 186, 182);
+    cursor: pointer; /* 设置鼠标悬停时的样式 */
+}
+
+.inside-interest {
+    position: inherit;
+    left: 550px; /* 设置兴趣标签距离头像的距离 */
+    font-size: 12px; /* 设置兴趣标签字体大小 */
+    color: red; /* 设置兴趣标签字体颜色 */
+    border-color: red;
+}
+
+.images-container {
+    position: absolute;
+    top: 200px;
+    left:350px;
+    width: 600px;
+    height: 350px;
+    overflow: hidden;
+    background-color: #999;
+    margin: 0 auto;
+}
+
+.image-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.image-slider img {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    left: 10px;
+    z-index: 10;
+}
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    right: 10px;
+    z-index: 10;
+}
+
+.content {
+    position: absolute;
+    top: 580px;
+    left: 350px;
+    width: 600px;
+    height: 350px;
+    font-size: 16px;
+    color: #333;
+    background-color: #999;
+}
+
+.comments {
+    position: absolute;
+    top: 1000px;
+    left: 350px;
+    width: 600px;
+    height: 350px;
+    font-size: 16px;
+    color: #333;
+    background-color: #999;
+}
+

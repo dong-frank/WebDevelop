@@ -2,8 +2,11 @@
     position: absolute;
     top: 1px;
     left: 210px;
+    width: 80%;
     display: flex;
     justify-content: flex-start;
+    border-bottom: 1px solid rgb(180, 162, 162); /* 添加底部黑色边框 */
+    padding-bottom: 4px; /* 添加一些内边距，使边框与内容之间有间距 */
   }
   
   .login-container button {

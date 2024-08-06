@@ -4,7 +4,9 @@
     left: 100px;
 }
 
-
+.masonry-item {
+    cursor: pointer; /* 添加这一行 */
+}
 
 .masonry-item img {
     width: 100%;

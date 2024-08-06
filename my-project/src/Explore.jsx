@@ -1,6 +1,7 @@
 import SideNav from "./SideNav";
 import TopNav from "./TopNav";
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import MasonryLayout from "./MasonryLayout";
 import './Explore.css';
 import * as axios from 'axios'
@@ -8,6 +9,7 @@ const client = axios.default;
 
 function Explore() {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
     // 发送 GET 请求获取文章数据
     client.get('http://127.0.0.1:7001/api/explore')
@@ -16,7 +18,7 @@ function Explore() {
         const articles = response.data.data;
         const formattedItems = articles.map((article, index) => (
           // console.log(article.images),
-          <div key={index} className="masonary-item">
+          <div key={index} className="masonary-item" onClick={() => handleItemClick(article)}>
             <img src={article.images} alt={article.title} />
             <h>{article.title}</h>
             <p>{article.content}</p>
@@ -29,6 +31,11 @@ function Explore() {
         console.error('Error fetching articles:', error);
       });
   }, []);
+
+  const handleItemClick = (article) => {
+    console.log('You clicked:', article);
+    navigate(`/article/${article.id}`);
+  }
   // const items = [
   //   <div className="masonary-item"><img src='src/assets/test1.png'/><h>item1</h><p>内容</p></div>,
   //   <div className="masonary-item"><img src='src/assets/test2.jpg'/><h>item2</h></div>,
