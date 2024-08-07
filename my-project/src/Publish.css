@@ -8,7 +8,7 @@
   left: 250px;
   width: 100px;
   height: 100px;
-  background-image: url('./assets/add_image.svg');
+  background-image: url('http://127.0.0.1:3000/add_image.svg');
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -144,7 +144,7 @@
 }
 
 .tags h2 {
-  background-image: url('./assets/tags.png');
+  background-image: url('http://127.0.0.1:3000/tags.png');
   background-size: contain;
   background-repeat: no-repeat;
   text-align: left;

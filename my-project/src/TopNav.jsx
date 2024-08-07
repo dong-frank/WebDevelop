@@ -33,7 +33,7 @@ function TopNav() {
                     </button>
                 )}
 
-                <img src='http://127.0.0.1:3000/9ba69ee6fac33bd14b7e00300.png' />
+                <img src='http://127.0.0.1:3000/default_avatar.png' />
                 <p className='welcome-back'>欢迎回来, {userName} !</p>
             </div>
 

@@ -3,6 +3,7 @@
     "@midwayjs/upload": "^3.16.8",
     "@nestjs/typeorm": "^10.0.2",
     "class-transformer": "^0.5.1",
+    "date-fns": "^3.6.0",
     "jsonwebtoken": "^9.0.2",
     "koa": "^2.15.3",
     "koa-body": "^6.0.1",

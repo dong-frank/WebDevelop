@@ -35,7 +35,7 @@
   }
 
   .admin-name {
-    background-image: url('src/assets/admin-name.png');
+    background-image: url('http://127.0.0.1:3000/admin_name.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     width: 70%;
@@ -50,7 +50,7 @@
   }
 
   .admin-password {
-    background-image: url('src/assets/admin-password.png');
+    background-image: url('http://127.0.0.1:3000/admin_password.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     width: 70%;

@@ -24,8 +24,8 @@ export class Article {
   @Column({ type: 'int', default: 0 })
   comments_count: number;
 
-  @Column({ type: 'text', nullable: true })
-  images: string;
+  @Column({ type: 'simple-array', nullable: true })
+  images: string[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;

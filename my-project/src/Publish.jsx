@@ -22,7 +22,7 @@ function Publish() {
   }
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    
+
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     console.log('files:', files);
 
@@ -60,7 +60,7 @@ function Publish() {
   async function uploadImageToServer(image) {
     const formData = new FormData();
     console.log('image:', image);
-      formData.append('image', image);
+    formData.append('image', image);
     const response = await client.post('http://127.0.0.1:3000/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -77,22 +77,24 @@ function Publish() {
     if (!token) {
       alert('用户不存在,请先注册或登录');
       return;
-    }else{
-      console.log('token:',token);
+    } else {
+      console.log('token:', token);
     }
-    if(!title){
+    if (!title) {
       alert('标题不能为空');
       return;
     }
     formData.append('title', title);
-    if(!content){
+    if (!content) {
       setContent(title);
+      formData.append('content', title);
+    } else {
+      formData.append('content', content);
     }
-    formData.append('content', content);
     formData.append('tags', JSON.stringify(selectedTags));
     formData.append('token', token);
     if (images.length === 0) {
-      images[0]=null;
+      images[0] = null;
     }
     const imageUrls = await Promise.all(
       images.map(async (image, index) => {
@@ -107,7 +109,7 @@ function Publish() {
       console.log(pair[0] + ': ' + pair[1]);
     }
     try {
-      const response = await client.post('http://127.0.0.1:7001/api/publish', formData,{
+      const response = await client.post('http://127.0.0.1:7001/api/publish', formData, {
         headers: {
           'Authorization': `Bearer your-jwt-token`,
         },

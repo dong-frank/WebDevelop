@@ -14,16 +14,12 @@ export class PublishController {
     ctx: Context;
 
     @Post("/publish")
-    async publish(@Fields() fields: any,) {
+    async publish(@Fields() fields: any) {
         if (!AppDataSource.isInitialized) {
             await AppDataSource.initialize();
         }
-
         const { title, content, tags, token } = fields;
 
-        // const images = Object.keys(fields)
-        //     .filter(key => key.startsWith('images['))
-        //     .map(key => fields[key]);
 
         const images = Object.keys(fields)
             .filter(key => key.startsWith('images['))
@@ -58,14 +54,14 @@ export class PublishController {
             title,
             content,
             tags,
-            images,
+            images ,
             author_id: user.id,
             likes: 0,
             comments_count: 0,
             created_at: new Date(),
             updated_at: new Date()
         });
-        console.log(article.images);
+        // console.log(article.images);
         await articleRepository.save(article);
 
         return { message: "发布成功" };

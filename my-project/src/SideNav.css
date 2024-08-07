@@ -10,7 +10,7 @@
   }
   
   .home{
-    background-image: url('src/assets/home.png');
+    background-image: url('http://127.0.0.1:3000/home.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     background-color: #b1a9c1;
@@ -34,7 +34,7 @@
   }
   
   .my-interest{
-    background-image: url('src/assets/my-interest.png');
+    background-image: url('http://127.0.0.1:3000/my_interest.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     background-color: #b1a9c1;
@@ -58,7 +58,7 @@
   }
   
   .explore{
-    background-image: url('src/assets/explore.png');
+    background-image: url('http://127.0.0.1:3000/explore.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     background-color: #b1a9c1;
@@ -82,7 +82,7 @@
   }
   
   .publish{
-    background-image: url('src/assets/publish.png');
+    background-image: url('http://127.0.0.1:3000/publish.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     background-color: #b1a9c1;

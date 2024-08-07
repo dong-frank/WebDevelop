@@ -35,6 +35,9 @@ AppDataSource.initialize().then(() => {
   AppDataSource.manager.save(user);
   AppDataSource.manager.save(tester);
   console.log('New User has been saved');
+
+  //清空文章数据库
+  // AppDataSource.manager.clear(Article);
   
 }).catch((error) => {
   console.error('Error during Data Source initialization:', error);
