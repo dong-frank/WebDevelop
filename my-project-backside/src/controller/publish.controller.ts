@@ -19,8 +19,14 @@ export class PublishController {
             await AppDataSource.initialize();
         }
         const { title, content, tags, token } = fields;
-
-
+        let parsedTags;
+    try {
+        parsedTags = JSON.parse(tags);
+    } catch (error) {
+        console.error('Error parsing tags:', error);
+        throw new Error('Invalid tags format');
+    }
+    console.log(parsedTags);
         const images = Object.keys(fields)
             .filter(key => key.startsWith('images['))
             .map(key => {
@@ -53,16 +59,17 @@ export class PublishController {
         const article = articleRepository.create({
             title,
             content,
-            tags,
+            tags: parsedTags,
             images ,
             author_id: user.id,
             likes: 0,
+            views: 0,
             comments_count: 0,
             created_at: new Date(),
             updated_at: new Date()
         });
-        // console.log(article.images);
         await articleRepository.save(article);
+        console.log(article);
 
         return { message: "发布成功" };
     }

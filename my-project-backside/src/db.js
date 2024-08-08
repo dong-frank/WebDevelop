@@ -2,6 +2,7 @@
 const { DataSource } = require('typeorm');
 const { User } = require('./entity/user'); 
 const { Article } = require('./entity/article');
+const { Comment } = require('./entity/comment');
 const { default: test } = require('node:test');
 // 创建数据源
 const AppDataSource = new DataSource({
@@ -13,7 +14,7 @@ const AppDataSource = new DataSource({
   database: 'webdatabase',
   synchronize: true,
   logging: false,
-  entities: [User , Article],
+  entities: [User , Article , Comment],
   migrations: ["src/migration/**/*.js"],
   subscribers: ["src/subscriber/**/*.js"],
 });

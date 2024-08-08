@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn,OneToMany } from 'typeorm';
 import { User } from './user'; // 假设用户实体类在 user.ts 文件中
+import { Comment } from './comment'; // 假设评论实体类在 comment.ts 文件中
 
 @Entity()
 export class Article {
@@ -22,6 +23,9 @@ export class Article {
   likes: number;
 
   @Column({ type: 'int', default: 0 })
+  views: number;
+
+  @Column({ type: 'int', default: 0 })
   comments_count: number;
 
   @Column({ type: 'simple-array', nullable: true })
@@ -36,4 +40,7 @@ export class Article {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'author_id' })
   author: User;
+
+  @OneToMany(() => Comment, comment => comment.article)
+  comments: Comment[];
 }

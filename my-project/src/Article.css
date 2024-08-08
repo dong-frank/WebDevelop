@@ -73,7 +73,13 @@
     /* 设置作者信息下方的边框 */
     padding-bottom: 10px
 }
-
+.article-tags {
+    position: absolute;
+    top: 110px;
+    left: 980px;
+    font-size: 14px;
+    color: #999;
+}
 .author-avatar {
     width: 30px;
     /* 设置头像宽度 */
@@ -288,8 +294,97 @@
     top: 1000px;
     left: 350px;
     width: 600px;
-    height: 350px;
+    max-height: 900px;
     font-size: 16px;
     color: #333;
-    background-color: #999;
+    /* background-color: #999;
+     */
+    border: 2px solid #dfdcdc;
+}
+
+.comment-input {
+    position: absolute;
+    top: 1050px;
+    left: 350px;
+    width: 600px;
+    height: 90px;
+    font-size: 16px;
+    color: #333;
+    border-bottom: 2px solid #dfdcdc;
+    margin: 2px;
+}
+
+.comment-input input{
+    position: relative;
+    left: 40px;
+    width:80%;
+    height: 50%;
+    background-color: #dfdcdc;
+}
+
+.comment-input-avatar{
+    position: absolute;
+    top: 1px;
+    left: 18px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-publish {
+    position: relative;
+    top: 50px;
+    right: 25px;
+    width: 60px; /* 调整按钮宽度 */
+    height: 30px; /* 调整按钮高度 */
+    font-size: 12px; /* 调整字体大小 */
+    background-color: aqua;
+}
+
+.comment-container {
+    position: relative;
+    top: 120px;
+    width: 600px;
+    height: 120px;
+    font-size: 16px;
+    color: #333;
+}
+
+.comment-content {
+    position: relative;
+    left: 70px;
+    width:80%;
+    height: 40%;
+    font-size: 16px;
+    background-color: #dfdcdc;
+    text-align: left;
+}
+
+.comment-content p{
+    margin: 5px;
+}
+
+.comment-author {
+    position: relative;
+    left: 70px;
+    font-size: 12px;
+    color: #333;
+    text-align: left;
+}
+
+.comment-avatar{
+    position: relative;
+    top: 55px;
+    left: 18px;
+    width: 50px;
+    height: 50px;
+}
+
+.comment-time {
+    position: relative;
+    left: 70px;
+    font-size: 12px;
+    color: #333;
+    text-align: left;
 }

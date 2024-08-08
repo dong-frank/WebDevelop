@@ -4,7 +4,8 @@ import './Article.css';
 import SideNav from "./SideNav";
 import TopNav from "./TopNav";
 import * as axios from 'axios';
-import { format } from 'date-fns'; // 导入 date-fns 的 format 函数
+import { format, set } from 'date-fns'; // 导入 date-fns 的 format 函数
+import { ca } from 'date-fns/locale';
 
 const client = axios.default;
 function Article() {
@@ -14,15 +15,19 @@ function Article() {
     const [author, setAuthor] = useState(null);
     const [author_name, setAuthorName] = useState('');
     const [title, setTitle] = useState('');
+    const [tags, setTags] = useState([]);
     const [content, setContent] = useState('');
     const [images, setImages] = useState([]);
     const [time, setTime] = useState('');
     const [like, setLike] = useState(0);
     const [view, setView] = useState(0);
-    const [comment, setComment] = useState(0);
+    const [commentCount, setCommentCount] = useState(0);
+    const [comment, setComment] = useState([]);
     const [currentImage, setCurrentImage] = useState(''); // 当前显示的图片
     const [isModalOpen, setIsModalOpen] = useState(false); // 控制模态框的显示
-    
+
+    const [commentContentInput, setCommentContentInput] = useState('');
+
     useEffect(() => {
         const goTopButton = document.getElementById('go-top-button');
         if (goTopButton) {
@@ -33,22 +38,36 @@ function Article() {
                 });
             });
         }
+
+        const updateViewCount = async () => {
+            try {
+                await client.post(`http://127.0.0.1:7001/api/view/${id}`);
+                console.log('View count updated');
+            } catch (error) {
+                console.error("Error updating view count:", error);
+            }
+        };
+
         // 发送请求获取文章数据
         const fetchData = async () => {
+            updateViewCount();
             await client.get(`http://127.0.0.1:7001/api/explore/${id}`)
                 .then(response => {
                     setArticle(response.data.data.article);
                     setAuthor(response.data.data.user);
                     setAuthorName(response.data.data.user.username);
                     setTitle(response.data.data.article.title);
+                    setTags(response.data.data.article.tags);
                     setContent(response.data.data.article.content);
                     setImages(response.data.data.article.images);
                     setLike(response.data.data.article.likes);
-                    // setView(response.data.data.article.view);
-                    setComment(response.data.data.article.comments_count);
+                    setView(response.data.data.article.views);
+                    setCommentCount(response.data.data.article.comments_count);
                     const formattedTime = format(new Date(response.data.data.article.created_at), 'yyyy-MM-dd HH:mm:ss');
                     setTime(formattedTime);
-                    console.log('response:', response.data.data.article);
+                    setComment(response.data.data.article.comments);
+                    //todo:
+
                 })
                 .catch(error => {
                     console.error('Error fetching article:', error);
@@ -58,8 +77,11 @@ function Article() {
         fetchData();
     }, [id]);
 
-    console.log('id:', id);
-    console.log('content:', content);
+    useEffect(() => {
+        console.log("comments:", comment);
+        setComment(comment);
+    }, [comment]);
+
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -79,6 +101,53 @@ function Article() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    const handlelLike = async () => {
+        setLike(like + 1);
+        console.log('like:', like);
+        try {
+            await client.post(`http://127.0.0.1:7001/api/like/${id}`)
+        } catch (error) {
+            console.error('Error liking article:', error);
+        }
+    }
+
+    const handleComment = async () => {
+
+        // console.log('comment:');
+    }
+
+    const handleCommentPublish = async () => {
+        const formData = new FormData();
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            alert('用户不存在,请先注册或登录');
+            return;
+        } else {
+            console.log('token:', token);
+        }
+        if (!commentContentInput) {
+            alert('评论不能为空');
+        }
+        formData.append('token', token);
+        formData.append('article_id', id);
+        formData.append('content', commentContentInput);
+
+        try {
+            const response = await client.post('http://127.0.0.1:7001/api/comment', formData, {
+                headers: {
+                    'Authorization': `Bearer your-jwt-token`,
+                },
+            });
+            alert(response.data.message);
+            setCommentContentInput('');
+        } catch (error) {
+            alert('评论失败' + error.response.data.message);
+        }
+
+
+    }
+
     return (
         <>
             <SideNav />
@@ -88,7 +157,10 @@ function Article() {
                 <p className="time">{time}</p>
                 <p className="view">{view} 浏览</p>
                 <p className="like">{like} 点赞</p>
-                <p className="comment">{comment} 评论</p>
+                <p className="comment">{commentCount} 评论</p>
+            </div>
+            <div className="article-tags">
+                {tags}
             </div>
             <div className="author">
                 <img className='author-avatar' src="http://127.0.0.1:3000/default_avatar.png" />
@@ -111,12 +183,28 @@ function Article() {
                 <p>{content}</p>
             </div>
             <div className='right-content'>
-                <button className='like-button'></button>
-                <button className='comment-button'></button>
+                <button className='like-button' onClick={() => handlelLike()}></button>
+                <button className='comment-button' onClick={() => handleComment()}></button>
                 <button className='go-top' id="go-top-button"></button>
             </div>
             <div className="comments">
-                <h>评论</h>
+                {comment.map(comment => (
+                    <div key={comment.id} className="comment-container">
+                        <img className="comment-avatar" src="http://127.0.0.1:3000/default_avatar.png" />
+                        <div className="comment-author">{comment.author.username}</div>
+                        <div className="comment-content">
+                            <p>{comment.content}
+                            </p>
+                        </div>
+                        <div className="comment-time">{format(new Date(comment.created_at), 'yyyy-MM-dd HH:mm:ss')}</div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="comment-input">
+                <input type="text" placeholder="分享你的观点" value={commentContentInput} onChange={(e) => setCommentContentInput(e.target.value)} />
+                <img className="comment-input-avatar" src="http://127.0.0.1:3000/default_avatar.png" />
+                <button className='comment-publish' onClick={() => handleCommentPublish()}>发布</button>
             </div>
             {isModalOpen && (
                 <div className="modal-article" onClick={closeModal}>

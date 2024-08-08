@@ -5,6 +5,7 @@
 }
 
 .masonry-item {
+    border: 1px solid #ccc;
     cursor: pointer; /* 添加这一行 */
 }
 
@@ -19,9 +20,9 @@
 }
 
 .masonry-item h {
-    font-size: 25px;
+    font-size: 22px;
     /* 标题字体大小 */
-    margin: 0;
+    margin: 10px;
     /* 重置标题的 margin */
 }
 

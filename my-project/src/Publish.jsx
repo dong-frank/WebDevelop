@@ -57,6 +57,17 @@ function Publish() {
     });
   };
 
+  const handleTagSelection = (tag) => {
+    setSelectedTags((prevTags) => {
+      // 如果标签已经存在于数组中，则不添加
+      if (prevTags.includes(tag)) {
+        return prevTags;
+      }
+      // 否则，添加新标签
+      return [...prevTags, tag];
+    });
+  };
+
   async function uploadImageToServer(image) {
     const formData = new FormData();
     console.log('image:', image);
@@ -66,6 +77,7 @@ function Publish() {
         'Content-Type': 'multipart/form-data',
       },
     });
+
     console.log(response.data.imageUrl);
     return response.data.imageUrl;
   }
@@ -91,20 +103,27 @@ function Publish() {
     } else {
       formData.append('content', content);
     }
+    if (selectedTags.length === 0) {
+      alert('请选择发布的圈子');
+      return;
+    }
     formData.append('tags', JSON.stringify(selectedTags));
     formData.append('token', token);
     if (images.length === 0) {
       images[0] = null;
-    }
-    const imageUrls = await Promise.all(
-      images.map(async (image, index) => {
-        return await uploadImageToServer(files[index]);
-      })
-    );
+      formData.append('images', images[0]);
+    } else {
+      const imageUrls = await Promise.all(
+        images.map(async (image, index) => {
+          return await uploadImageToServer(files[index]);
+        })
+      );
 
-    imageUrls.forEach((url, index) => {
-      formData.append(`images[${index}]`, url);
-    });
+
+      imageUrls.forEach((url, index) => {
+        formData.append(`images[${index}]`, url);
+      });
+    }
     for (let pair of formData.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }

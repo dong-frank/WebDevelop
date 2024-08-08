@@ -1,4 +1,4 @@
-import { Controller,  Provide, Inject,  Get } from "@midwayjs/core";
+import { Controller, Provide, Inject, Get } from "@midwayjs/core";
 import { Context } from "@midwayjs/koa";
 import { AppDataSource } from "../db";
 import { User } from "../entity/user";
@@ -21,8 +21,9 @@ export class ExploreController {
         const articleRepository = AppDataSource.getRepository(Article);
         const articles = await articleRepository.find();
 
+
         this.ctx.body = {
-            success: true, 
+            success: true,
             data: articles
         }
     }
@@ -33,19 +34,19 @@ export class ExploreController {
             await AppDataSource.initialize();
         }
 
-        console.log(this.ctx.params.id);
+        // console.log(this.ctx.params.id);
 
         const articleRepository = AppDataSource.getRepository(Article);
-        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id } });
+        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id }, relations: ['comments' , 'comments.author'] });
+        console.log(article.comments);
         const userRepository = AppDataSource.getRepository(User);
-        const user = await userRepository.findOne({where: {id: article.author_id}});
-        console.log(user);
-
+        const user = await userRepository.findOne({ where: { id: article.author_id } });
+        
         this.ctx.body = {
-            success: true, 
+            success: true,
             data: {
                 article,
-                user
+                user,
             }
         }
     }

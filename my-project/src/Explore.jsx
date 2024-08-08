@@ -21,7 +21,7 @@ function Explore() {
           <div key={index} className="masonary-item" onClick={() => handleItemClick(article)}>
             <img src={article.images[0]} alt={article.title} />
             <h>{article.title}</h>
-            <p>{article.content}</p>
+            {/* <p>{article.content}</p> */}
           </div>
         ));
         setItems(formattedItems);
