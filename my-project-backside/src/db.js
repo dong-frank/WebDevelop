@@ -3,6 +3,7 @@ const { DataSource } = require('typeorm');
 const { User } = require('./entity/user'); 
 const { Article } = require('./entity/article');
 const { Comment } = require('./entity/comment');
+const { InterestCircle } = require('./entity/interest-circle');
 const { default: test } = require('node:test');
 // 创建数据源
 const AppDataSource = new DataSource({
@@ -14,7 +15,7 @@ const AppDataSource = new DataSource({
   database: 'webdatabase',
   synchronize: true,
   logging: false,
-  entities: [User , Article , Comment],
+  entities: [User , Article , Comment , InterestCircle],
   migrations: ["src/migration/**/*.js"],
   subscribers: ["src/subscriber/**/*.js"],
 });
@@ -37,8 +38,10 @@ AppDataSource.initialize().then(() => {
   AppDataSource.manager.save(tester);
   console.log('New User has been saved');
 
+
   //清空文章数据库
   // AppDataSource.manager.clear(Article);
+  
   
 }).catch((error) => {
   console.error('Error during Data Source initialization:', error);

@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
+import { Entity, PrimaryGeneratedColumn, Column , ManyToMany , JoinTable } from 'typeorm';
+import { InterestCircle } from "./interest-circle";
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -13,4 +13,8 @@ export class User {
 
   @Column()
   avatar: string;
+
+  @ManyToMany(() => InterestCircle, circle => circle.users)
+    @JoinTable()
+    circles: InterestCircle[];
 }

@@ -25,3 +25,51 @@
   height: 100%;
   flex-shrink: 0;
 }
+
+.interestCircles {
+  position: absolute;
+  top: 300px;
+  left: 250px;
+  text-align: left;
+}
+
+.circle-container {
+  position:relative;
+  top: 20px;
+  border: 1px solid black;
+  width: 780px;
+  height: 100px;
+  margin: 20px;
+}
+
+.circle-avatar {
+  width: 75px;
+  height: 75px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: black;
+}
+
+.circle-name {
+  position: relative;
+  font-size: 20px;
+  left: 100px;
+  top: -90px;
+}
+
+.circle-users {
+  position: relative;
+  font-size: 14px;
+  left: 100px;
+  top: -85px;
+}
+
+.join-circle {
+  position: relative;
+  font-size: 14px;
+  left: 700px;
+  top: -100px;
+  color: white;
+  background-color: rgb(243, 186, 182);
+  cursor: pointer;
+}
