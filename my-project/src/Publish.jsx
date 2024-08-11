@@ -78,7 +78,6 @@ function Publish() {
       },
     });
 
-    console.log(response.data.imageUrl);
     return response.data.imageUrl;
   }
 

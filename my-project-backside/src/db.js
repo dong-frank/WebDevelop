@@ -4,6 +4,7 @@ const { User } = require('./entity/user');
 const { Article } = require('./entity/article');
 const { Comment } = require('./entity/comment');
 const { InterestCircle } = require('./entity/interest-circle');
+const { UserCircleExperience} = require('./entity/user-circle-experience');
 const { default: test } = require('node:test');
 // 创建数据源
 const AppDataSource = new DataSource({
@@ -15,7 +16,7 @@ const AppDataSource = new DataSource({
   database: 'webdatabase',
   synchronize: true,
   logging: false,
-  entities: [User , Article , Comment , InterestCircle],
+  entities: [User , Article , Comment , InterestCircle , UserCircleExperience],
   migrations: ["src/migration/**/*.js"],
   subscribers: ["src/subscriber/**/*.js"],
 });
