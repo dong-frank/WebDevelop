@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn,OneToMany } from 'typeorm';
 import { User } from './user'; // 假设用户实体类在 user.ts 文件中
 import { Comment } from './comment'; // 假设评论实体类在 comment.ts 文件中
+import { InterestCircle } from './interest-circle';
 
 @Entity()
 export class Article {
@@ -40,6 +41,9 @@ export class Article {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'author_id' })
   author: User;
+
+  @ManyToOne(() => InterestCircle, circle => circle.articles)
+  circle: InterestCircle;
 
   @OneToMany(() => Comment, comment => comment.article)
   comments: Comment[];

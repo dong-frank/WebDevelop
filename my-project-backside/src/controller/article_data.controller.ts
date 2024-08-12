@@ -17,7 +17,7 @@ export class ArticleDataController {
         }
 
         const articleRepository = AppDataSource.getRepository(Article);
-        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id } });
+        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id }});
 
         if (!article) {
             this.ctx.status = 404;
@@ -40,7 +40,7 @@ export class ArticleDataController {
         }
 
         const articleRepository = AppDataSource.getRepository(Article);
-        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id } });
+        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id }});
 
         if (!article) {
             this.ctx.status = 404;
@@ -49,7 +49,6 @@ export class ArticleDataController {
 
         article.views += 1;
         await articleRepository.save(article);
-        console.log(article);
         this.ctx.body = {
             success: true,
             data: article

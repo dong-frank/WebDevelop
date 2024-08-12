@@ -139,9 +139,19 @@
 .tags {
   position: fixed;
   top: 280px;
-  left: 2px;
-  font-size: 20px;
+  left: 5px;
+  width: 150px;
+  flex-direction: column;
+  align-items: flex-start; /* 可选：如果你想让按钮左对齐 */
+  border-top: 1px solid black;
 }
+
+.tags-container {
+  max-height: 200px; /* 设置容器的最大高度 */
+  overflow-y: auto; /* 启用垂直滚动条 */
+  width: 100%; /* 确保滚动容器占满父容器宽度 */
+}
+
 
 .tags h2 {
   background-image: url('http://127.0.0.1:3000/tags.png');
@@ -154,11 +164,11 @@
 }
 
 .tag {
-  margin: 5px;
-  padding: 5px 10px;
-  /* 调整标签按钮的内边距 */
-  font-size: 10px;
-  /* 调整标签按钮的字体大小 */
+  width: 70%; /* 可选：让按钮占满容器的宽度 */
+  /* padding: 10px;  */
+  text-align: left; /* 可选：让按钮文本左对齐 */
+  font-size: 14px;/* 调整标签按钮的字体大小 */
+  margin: 5px 0; /* 可选：设置按钮的外边距 */
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
@@ -170,38 +180,12 @@
   border-color: #007bff;
 }
 
-.atfriends {
-  position: fixed;
-  top: 370px;
-  left: 2px;
-  font-size: 20px;
-}
 
-.atfriends button {
-  margin: 5px;
-  padding: 5px 10px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 .publish-button button {
   position: fixed;
   top: 450px;
-  left: 2px;
-  margin: 5px;
-  padding: 5px 10px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.draft-button button {
-  position: fixed;
-  top: 450px;
-  left: 100px;
+  right: 10px;
   margin: 5px;
   padding: 5px 10px;
   font-size: 20px;

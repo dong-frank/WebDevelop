@@ -191,14 +191,14 @@ function MyArea() {
             type="file"
             id="avatarInput"
             accept="image/*"
-            placeholder="上传圈子头像"
+            
             onChange={handleImageChange}
           />
           <div className="circleAvatarPreview">
             {imagePreview ? (
               <img src={imagePreview} alt="Circle Avatar Preview" style={{ width: '100px', height: '100px' }} />
             ) : (
-              <span>上传圈子头像</span>
+              <span></span>
             )}
           </div>
         </div>

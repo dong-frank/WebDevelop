@@ -33,7 +33,7 @@ export class CommentController {
         const user = await userRepository.findOne({ where: { id: decoded.id } });
 
         const articleRepository = AppDataSource.getRepository(Article);
-        const article = await articleRepository.findOne({ where: { id: article_id } });
+        const article = await articleRepository.findOne({ where: { id: article_id } , relations: ['circle'] });
 
         const commentRepository = AppDataSource.getRepository(Comment);
         const comment = commentRepository.create({
@@ -43,8 +43,10 @@ export class CommentController {
             created_at: new Date()
         });
         await commentRepository.save(comment);
-
-        
-
+        return {
+            success: true,
+            data: article,
+            message: '评论成功'
+        }
     }
 }

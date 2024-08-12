@@ -24,7 +24,7 @@
 .circle-owner {
     position: relative;
     top: -35px;
-    left: 10px;
+    padding: 5px;
     font-size: 16px;
     color: #8a8a8a;
 }
@@ -32,8 +32,9 @@
 .circle-intro {
     position: relative;
     top: -25px;
-    left: 10px;
+    /* left: 10px; */
     font-size: 18px;
+    padding: 5px;
     border-bottom: 1px solid black;
 }
 
@@ -53,7 +54,8 @@
 .exp-in-circle {
     position: relative;
     top: -30px;
-    left: 270px;
+    left: -20px;
+    text-align: right ;
 }
 
 .mycircle-avatar {

@@ -10,7 +10,7 @@
 }
 
 .masonry-item img {
-    width: 100%;
+    width: 350px;
     /* 根据需要调整图片宽度 */
     height: auto;
     /* 保持图片比例 */
@@ -27,8 +27,10 @@
 }
 
 .masonry-item p {
-    font-size: 20px;
+    font-size: 18px;
     /* 摘要字体大小 */
     margin: 0;
     /* 重置摘要的 margin */
+    text-align: right;
+    color: #999;
 }

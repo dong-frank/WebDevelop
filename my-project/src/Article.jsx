@@ -5,7 +5,8 @@ import SideNav from "./SideNav";
 import TopNav from "./TopNav";
 import * as axios from 'axios';
 import { format, set } from 'date-fns'; // 导入 date-fns 的 format 函数
-import { ca } from 'date-fns/locale';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const client = axios.default;
 function Article() {
@@ -82,6 +83,26 @@ function Article() {
         setComment(comment);
     }, [comment]);
 
+    useEffect(() => {
+        async function getExperience() {
+            await client.post('http://127.0.0.1:7001/api/experience', {
+                token: sessionStorage.getItem('token'),
+                circleId: article.circle.id,
+                experience: 1
+            });
+            toast.success('每日浏览文章，经验+1', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        getExperience();
+    }, [article]);
+
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -113,7 +134,7 @@ function Article() {
     }
 
     const handleComment = async () => {
-
+        //TODO:
         // console.log('comment:');
     }
 
@@ -141,6 +162,22 @@ function Article() {
             });
             alert(response.data.message);
             setCommentContentInput('');
+
+            await client.post('http://127.0.0.1:7001/api/experience', {
+                token: sessionStorage.getItem('token'),
+                circleId: response.data.data.circle.id,
+                experience: 4
+            });
+            toast.success('评论文章，经验+4', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            
         } catch (error) {
             alert('评论失败' + error.response.data.message);
         }
@@ -152,6 +189,7 @@ function Article() {
         <>
             <SideNav />
             <TopNav />
+            <ToastContainer />
             <div className="article-title">
                 <h className="title">{title}</h>
                 <p className="time">{time}</p>
@@ -160,13 +198,12 @@ function Article() {
                 <p className="comment">{commentCount} 评论</p>
             </div>
             <div className="article-tags">
-                {tags}
+                #{tags}
             </div>
             <div className="author">
                 <img className='author-avatar' src="http://127.0.0.1:3000/default_avatar.png" />
                 <h className='author-name'>{author_name}</h>
-                <button className='follow-author'>关注作者</button>
-                <button className='inside-interest'>进入圈子</button>
+                
             </div>
 
             <div className='images-container'>
@@ -184,7 +221,6 @@ function Article() {
             </div>
             <div className='right-content'>
                 <button className='like-button' onClick={() => handlelLike()}></button>
-                <button className='comment-button' onClick={() => handleComment()}></button>
                 <button className='go-top' id="go-top-button"></button>
             </div>
             <div className="comments">

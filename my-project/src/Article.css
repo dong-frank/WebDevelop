@@ -75,9 +75,9 @@
 }
 .article-tags {
     position: absolute;
-    top: 110px;
-    left: 980px;
-    font-size: 14px;
+    top: 150px;
+    left: 950px;
+    font-size: 18px;
     color: #999;
 }
 .author-avatar {
@@ -99,30 +99,6 @@
     /* 设置名字字体大小 */
     color: #333;
     /* 设置名字字体颜色 */
-}
-
-.follow-author {
-    position: inherit;
-    left: 690px;
-    /* 设置关注按钮距离头像的距离 */
-    font-size: 12px;
-    /* 设置关注按钮字体大小 */
-    color: white;
-    /* 设置关注按钮字体颜色 */
-    background-color: rgb(243, 186, 182);
-    cursor: pointer;
-    /* 设置鼠标悬停时的样式 */
-}
-
-.inside-interest {
-    position: inherit;
-    left: 550px;
-    /* 设置兴趣标签距离头像的距离 */
-    font-size: 12px;
-    /* 设置兴趣标签字体大小 */
-    color: red;
-    /* 设置兴趣标签字体颜色 */
-    border-color: red;
 }
 
 .images-container {
@@ -265,17 +241,6 @@
     cursor: pointer; /* 鼠标悬停时显示手型光标 */
 }
 
-.comment-button {
-    margin-top: 10px; /* 设置按钮与按钮之间的间距 */
-    width: 40px; /* 设置按钮的宽度 */
-    height: 40px; /* 设置按钮的高度 */
-    background-image: url("http://127.0.0.1:3000/评论.png"); /* 设置背景图片 */
-    background-size: 80%; /* 确保图片覆盖整个按钮 */
-    background-repeat: no-repeat; /* 防止图片重复 */
-    background-position: center; /* 将图片居中 */
-    border: none; /* 移除按钮边框 */
-    cursor: pointer; /* 鼠标悬停时显示手型光标 */
-}
 
 .go-top {
     margin-top: 30px; /* 设置按钮与按钮之间的间距 */

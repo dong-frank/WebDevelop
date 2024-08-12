@@ -34,7 +34,7 @@
   }
   
   .my-interest{
-    background-image: url('http://127.0.0.1:3000/my_interest.png');
+    background-image: url('http://127.0.0.1:3000/my-interest.png');
     background-position: 1px center;
     background-repeat: no-repeat;
     background-color: #b1a9c1;

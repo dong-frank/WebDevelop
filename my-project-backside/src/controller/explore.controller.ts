@@ -37,10 +37,12 @@ export class ExploreController {
         // console.log(this.ctx.params.id);
 
         const articleRepository = AppDataSource.getRepository(Article);
-        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id }, relations: ['comments' , 'comments.author'] });
+        const article = await articleRepository.findOne({ where: { id: this.ctx.params.id }, relations: ['comments' , 'comments.author' , 'circle'] });
         console.log(article.comments);
         const userRepository = AppDataSource.getRepository(User);
         const user = await userRepository.findOne({ where: { id: article.author_id } });
+        
+        
         
         this.ctx.body = {
             success: true,

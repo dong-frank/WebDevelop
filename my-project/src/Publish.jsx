@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import SideNav from './SideNav'
 import TopNav from './TopNav'
 import * as axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const client = axios.default;
 
 function Publish() {
@@ -17,9 +19,30 @@ function Publish() {
   const [files, setFiles] = useState([]);
   const [content, setContent] = useState('');
   const [originalFiles, setOriginalFiles] = useState([]);
+  const [myCircles, setMyCircles] = useState([]);
   const toggleList = () => {
     setIsListOpen(!isListOpen);
   }
+
+  useEffect(() => {
+    const fetchCircles = async () => {
+      const token = sessionStorage.getItem('token');
+      await client.post(`http://127.0.0.1:7001/api/my-interest-circles`, {
+        token: token
+      })
+        .then(response => {
+          setMyCircles(response.data.data);
+          console.log('Circles fetched:', response.data.data);
+          //todo:
+        })
+        .catch(error => {
+          console.error('Error fetching circles:', error);
+        });
+    }
+
+    fetchCircles();
+  }, [])
+
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
 
@@ -58,14 +81,7 @@ function Publish() {
   };
 
   const handleTagSelection = (tag) => {
-    setSelectedTags((prevTags) => {
-      // 如果标签已经存在于数组中，则不添加
-      if (prevTags.includes(tag)) {
-        return prevTags;
-      }
-      // 否则，添加新标签
-      return [...prevTags, tag];
-    });
+    setSelectedTags([tag]);
   };
 
   async function uploadImageToServer(image) {
@@ -137,6 +153,21 @@ function Publish() {
       setContent('');
       setSelectedTags([]);
       setImages([]);
+      console.log('response:', response.data.data.circle.id);
+      await client.post('http://127.0.0.1:7001/api/experience', {
+        token: sessionStorage.getItem('token'),
+        circleId: response.data.data.circle.id,
+        experience: 10
+      });
+      toast.success('发布文章，经验+10', {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       alert('发布失败' + error.response.data.message);
     }
@@ -159,6 +190,7 @@ function Publish() {
     <>
       <SideNav />
       <TopNav />
+      <ToastContainer />
       <div className='image-upload'>
         <div className='image-input-wrapper' style={{ left: `${250 + images.length * 110}px` }} onClick={() => document.getElementById('file').click()}>
           <input className='image-input' type='file' id='file' accept='image/*' onChange={handleImageChange} />
@@ -182,40 +214,28 @@ function Publish() {
       <input type='text' placeholder='填写标题会有更多赞噢~' className='title_input' value={title} onChange={(e) => setTitle(e.target.value)} />
       <textarea placeholder='添加正文' className='content_input' value={content} onChange={(e) => setContent(e.target.value)} />
       <div className="tags">
-        <h2>标签</h2>
-        {['#鼠鼠', '#小动物', '#可爱'].map((tag) => (
-          <button
-            key={tag}
-            className={`tag ${selectedTags.includes(tag) ? 'selected' : ''}`}
-            onClick={() => handleTagSelection(tag)}
-          >
-            {tag}
-          </button>
+        <h2>圈子</h2>
+        <div className="tags-container">
+          {myCircles.map((tag) => (
+            <button
+              key={tag.id}
+              className={`tag ${selectedTags.includes(tag.name) ? 'selected' : ''}`}
+              onClick={() => handleTagSelection(tag.name)}
+            >
+              {tag.name}
+            </button>
 
-        ))}
+          ))}
+        </div>
       </div>
 
-      <div className="atfriends">
-        <button onClick={toggleList}>
-          {isListOpen ? '@圈好友' : '@圈好友'}
-        </button>
-        {isListOpen && (
-          <ul>
-            <li>小铫</li>
-            <li>幺幺</li>
-            <li>屁屁</li>
-            {/* 添加更多列表项 */}
-          </ul>
-        )}
-      </div>
+      
 
       <div className="publish-button">
         <button onClick={() => handlePublish()}>发布</button>
       </div>
 
-      <div className='draft-button'>
-        <button>存草稿</button>
-      </div>
+      
     </>
   )
 }

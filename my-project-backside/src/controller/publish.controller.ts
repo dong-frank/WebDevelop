@@ -3,6 +3,7 @@ import { Context } from "@midwayjs/koa";
 import { AppDataSource } from "../db";
 import { User } from "../entity/user";
 import { Article } from "../entity/article";
+import { InterestCircle } from "../entity/interest-circle";
 import * as jwt from "jsonwebtoken";
 import { JwtPayload } from "jsonwebtoken";
 
@@ -54,7 +55,9 @@ export class PublishController {
             this.ctx.status = 404;
             return { message: '用户不存在,请先注册或登录' };
         }
-
+        const interestCircleRepository = AppDataSource.getRepository(InterestCircle);
+        const circle = await interestCircleRepository.findOne({ where: { name: parsedTags} });
+        console.log(circle);
         const articleRepository = AppDataSource.getRepository(Article);
         const article = articleRepository.create({
             title,
@@ -66,12 +69,13 @@ export class PublishController {
             views: 0,
             comments_count: 0,
             created_at: new Date(),
-            updated_at: new Date()
+            updated_at: new Date(),
+            circle: circle
         });
         await articleRepository.save(article);
         console.log(article);
 
-        return { message: "发布成功" };
+        return { message: "发布成功",data:article };
     }
 
 }

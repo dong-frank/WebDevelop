@@ -21,7 +21,7 @@ function Explore() {
           <div key={index} className="masonary-item" onClick={() => handleItemClick(article)}>
             <img src={article.images[0]} alt={article.title} />
             <h>{article.title}</h>
-            {/* <p>{article.content}</p> */}
+            <p>#{article.tags}</p>
           </div>
         ));
         setItems(formattedItems);
@@ -36,14 +36,6 @@ function Explore() {
     console.log('You clicked:', article);
     navigate(`/article/${article.id}`);
   }
-  // const items = [
-  //   <div className="masonary-item"><img src='src/assets/test1.png'/><h>item1</h><p>内容</p></div>,
-  //   <div className="masonary-item"><img src='src/assets/test2.jpg'/><h>item2</h></div>,
-  //   <div className="masonary-item"><img src='src/assets/test2.jpg'/><h>item3</h></div>,
-  //   <div className="masonary-item"><img src='src/assets/test1.png'/><h>item1</h></div>,
-  //   <div className="masonary-item"><img src='src/assets/test1.png'/><h>item2</h></div>,
-  //   <div className="masonary-item"><img src='src/assets/test1.png'/><h>item3</h></div>,
-  // ];
 
   return (
     <>

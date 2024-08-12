@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
 import { User } from "./user";
 import { UserCircleExperience } from './user-circle-experience';
+import { Article } from "./article";
 
 @Entity()
 export class InterestCircle {
@@ -21,5 +22,9 @@ export class InterestCircle {
 
     @OneToMany(() => UserCircleExperience, experience => experience.circle)
     userExperiences: UserCircleExperience[];
+
+    @OneToMany(() => Article, article => article.circle)
+    articles: Article[];
+    
 
 }
