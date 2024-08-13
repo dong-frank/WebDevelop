@@ -52,7 +52,7 @@ function LoginModal({ isOpen, onClose }) {
                     <input className='admin-password' type='password' placeholder='请输入密码' value={password} onChange={(e) => setPassword(e.target.value)} />
                     <div className='privacy-consent'>
                         <input type='checkbox' id='privacyConsent' name='privacyConsent' checked={isPrivacyConsentChecked} onChange={(e) => setIsPrivacyConsentChecked(e.target.checked)} />
-                        <label htmlFor='privacyConsent'>我已阅读并同意<a href='todo'>「兴趣圈用户使用协议」</a></label>
+                        <label htmlFor='privacyConsent'>我已阅读并同意<a href='my-area'>「兴趣圈用户使用协议」</a></label>
                     </div>
                     <div className='login-button-container'>
                         <button className='login-button' onClick={() => handleLogin()}>登录</button>

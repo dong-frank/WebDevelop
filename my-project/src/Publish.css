@@ -185,11 +185,13 @@
 .publish-button button {
   position: fixed;
   top: 450px;
-  right: 10px;
+  right: 30px;
   margin: 5px;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-size: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  color: white;
+    background-color: rgb(243, 186, 182);
   cursor: pointer;
 }

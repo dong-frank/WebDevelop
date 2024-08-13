@@ -222,7 +222,7 @@ function Publish() {
               className={`tag ${selectedTags.includes(tag.name) ? 'selected' : ''}`}
               onClick={() => handleTagSelection(tag.name)}
             >
-              {tag.name}
+              {'#'+tag.name}
             </button>
 
           ))}

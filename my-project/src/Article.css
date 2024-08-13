@@ -200,7 +200,7 @@
     top: 580px;
     left: 350px;
     width: 600px;
-    height: 350px;
+    height: 400px;
     font-size: 18px;
     color: #333;
     background-color: white;
@@ -209,6 +209,8 @@
     border-bottom: none;
     border-radius: 5px;
     padding: 20px;
+    white-space: pre-wrap;
+    overflow: auto; /* 添加滚动条 */
 }
 
 .right-content {
@@ -256,15 +258,14 @@
 
 .comments {
     position: absolute;
-    top: 1000px;
+    top: 1180px;
     left: 350px;
     width: 600px;
     max-height: 900px;
     font-size: 16px;
     color: #333;
-    /* background-color: #999;
-     */
     border: 2px solid #dfdcdc;
+    overflow: auto;
 }
 
 .comment-input {
@@ -272,10 +273,10 @@
     top: 1050px;
     left: 350px;
     width: 600px;
-    height: 90px;
+    height: 120px;
     font-size: 16px;
     color: #333;
-    border-bottom: 2px solid #dfdcdc;
+    border: 2px solid #dfdcdc;
     margin: 2px;
 }
 
@@ -285,6 +286,7 @@
     width:80%;
     height: 50%;
     background-color: #dfdcdc;
+    margin: 10px;
 }
 
 .comment-input-avatar{
@@ -309,7 +311,7 @@
 
 .comment-container {
     position: relative;
-    top: 120px;
+    /* top: 120px; */
     width: 600px;
     height: 120px;
     font-size: 16px;
@@ -324,6 +326,7 @@
     font-size: 16px;
     background-color: #dfdcdc;
     text-align: left;
+    
 }
 
 .comment-content p{

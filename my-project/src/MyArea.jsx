@@ -32,7 +32,7 @@ function MyArea() {
       }
     };
     fetchCircleExperience();
-    
+
   }, [expandedCircles]);
 
   useEffect(() => {
@@ -125,6 +125,7 @@ function MyArea() {
       <SideNav />
       <TopNav />
       <div className='myinterestCircles'>
+        <p className="mycircle-title">我的兴趣圈</p>
         {myCircles.map(circle => (
           <div key={circle.id} className={`mycircle-container ${expandedCircles[circle.id] ? 'expanded' : ''}`}>
             <img className="mycircle-avatar" src={circle.avatar} />
@@ -151,9 +152,9 @@ function MyArea() {
         ))}
       </div>
       <div className="createCircleContainer">
-        <p>创建圈子</p>
+        <p className="createTitle">创建圈子</p>
         <div className="createRule">
-          <p>社区规则</p>
+          <p style={{fontSize: '16px',color: '#646cff'}} >「兴趣圈用户使用协议」</p>
           <p>（1） 反对宪法所确定的基本原则的；</p>
 
           <p>（2） 危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</p>
@@ -162,21 +163,21 @@ function MyArea() {
 
           <p>（4） 歪曲、丑化、亵渎、否定英雄烈士事迹和精神，以侮辱、诽谤或者其他方式侵害英雄烈士的姓名、肖像、名誉、荣誉的；</p>
 
-          {/* （5） 宣扬恐怖主义、极端主义或者煽动实施恐怖活动、极端主义活动的；
+          <p>（5） 宣扬恐怖主义、极端主义或者煽动实施恐怖活动、极端主义活动的；</p>
 
-（6） 煽动民族仇恨、民族歧视，破坏民族团结的；
+          <p>（6） 煽动民族仇恨、民族歧视，破坏民族团结的；</p>
 
-（7） 破坏国家宗教政策，宣扬邪教和封建迷信的；
+          <p>（7） 破坏国家宗教政策，宣扬邪教和封建迷信的；</p>
 
-（8） 散布谣言，扰乱经济秩序和社会秩序的；
+          <p>（8） 散布谣言，扰乱经济秩序和社会秩序的；</p>
 
-（9） 散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪、引诱自杀的；
+          <p>（9） 散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪、引诱自杀的；</p>
 
-（10） 侮辱或者诽谤他人，侵害他人名誉、隐私和其他合法权益的；
+          <p>（10） 侮辱或者诽谤他人，侵害他人名誉、隐私和其他合法权益的；</p>
 
-（11） 侵害未成年人合法权益或可能危害未成年人身心健康的；
+          <p>（11） 侵害未成年人合法权益或可能危害未成年人身心健康的；</p>
 
-（12） 法律、行政法规禁止的其他行为或内容。</p> */}
+          <p>（12） 法律、行政法规禁止的其他行为或内容。</p>
         </div>
         <input
           className="inputCircleName"
@@ -191,7 +192,7 @@ function MyArea() {
             type="file"
             id="avatarInput"
             accept="image/*"
-            
+
             onChange={handleImageChange}
           />
           <div className="circleAvatarPreview">

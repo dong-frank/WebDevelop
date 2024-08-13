@@ -2,13 +2,21 @@
     position: absolute;
     top: 50px;
     left: 250px;
+    width: 390px;
+    height: 600px;
+    overflow: auto;
     text-align: left;
+    border: 1px solid black;
+}
 
+.mycircle-title {
+    text-align: center;
+    font-size: 20px;
 }
 
 .mycircle-container {
     position: relative;
-    top: 20px;
+    /* top: 10px; */
     border: 1px solid black;
     width: 350px;
     height: 100px;
@@ -89,6 +97,8 @@
     border: none;
     padding: 5px;
     border-bottom: 1px solid black;
+    color: white;
+    background-color: rgb(243, 186, 182);
 }
 
 .createCircleContainer {
@@ -101,13 +111,19 @@
     border: 1px solid black;
 }
 
+.createTitle{
+    text-align: center;
+    font-size: 20px;
+}
+
 .createRule {
     position: relative;
     top: 20px;
     left: 20px;
     font-size: 14px;
     width: 300px;
-    height: 200px;
+    height: 300px;
+    overflow: auto;
     border: 1px solid black;
 }
 
@@ -170,5 +186,7 @@
     height: 30px;
     border: none;
     padding: 5px;
+    color: white;
+    background-color: rgb(243, 186, 182);
     border-bottom: 1px solid black;
 }
