@@ -1,6 +1,7 @@
 # WebDevelop
-南京大学软件工程暑期学校Web开发大作业**开发代码库**
-项目地址:https://github.com/dong-frank/WebDevelop
+南京大学软件工程暑期学校Web开发大作业
+**开发代码库**:https://github.com/dong-frank/WebDevelop
+**打包产物库**:https://github.com/dong-frank/WebDevelopWork
 # 兴趣圈基本功能
 
 ## 显示多个兴趣圈
