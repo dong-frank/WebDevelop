@@ -31,6 +31,8 @@
   position: absolute;
   top: 300px;
   left: 250px;
+  height: 500px;
+  overflow: auto;
   text-align: left;
 }
 
@@ -56,6 +58,7 @@
   font-size: 20px;
   left: 100px;
   top: -90px;
+  font-family: "font2", sans-serif;
 }
 
 .circle-users {
@@ -63,14 +66,20 @@
   font-size: 14px;
   left: 100px;
   top: -85px;
+  font-family: "font2", sans-serif;
 }
 
 .join-circle {
   position: relative;
-  font-size: 14px;
+  font-size: 16px;
   left: 700px;
   top: -100px;
   color: white;
   background-color: rgb(243, 186, 182);
   cursor: pointer;
+  font-family: "font2", sans-serif;
+}
+.join-circle:hover {
+  background-color: #ab91a4;
+  transform: scale(0.9);
 }

@@ -13,7 +13,7 @@ const AppDataSource = new DataSource({
   port: 3306,
   username: 'root',
   password: 'rds364408',
-  database: 'webdatabase',
+  database: 'webdatabase_release2',
   synchronize: true,
   logging: false,
   entities: [User , Article , Comment , InterestCircle , UserCircleExperience],
@@ -23,27 +23,6 @@ const AppDataSource = new DataSource({
 
 AppDataSource.initialize().then(() => {
   console.log('Data Source has been initialized!');
-
-  // 创建新用户实例
-  const user = new User();
-  user.username = 'Frank';
-  user.password = 'rds364408';
-  user.avatar = 'default';
-
-  const tester = new User();
-  tester.username = 'test';
-  tester.password = '1';
-  tester.avatar = 'default';
-  // 保存新用户到数据库
-  AppDataSource.manager.save(user);
-  AppDataSource.manager.save(tester);
-  console.log('New User has been saved');
-
-
-  //清空文章数据库
-  // AppDataSource.manager.clear(Article);
-  
-  
 }).catch((error) => {
   console.error('Error during Data Source initialization:', error);
 });

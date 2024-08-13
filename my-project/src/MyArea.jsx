@@ -107,6 +107,8 @@ function MyArea() {
     setCircleName('');
     setCircleIntro('');
     setImageFile(null);
+    setImagePreview(null);
+    window.location.reload();
   }
   const handleImageChange = (e) => {
     const file = e.target.files[0];

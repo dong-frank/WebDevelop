@@ -20,18 +20,13 @@
     height: 500px;
   }
 
-  /* .welcome {
-    width:100%;
-    font-size: 24px;
-    margin-left: 10px;
-    margin-top: 60px;
-  } */
 
   .welcome-text {
     position: relative;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
-    font-size: 24px;
+    font-size: 30px;
+    font-family: "font2", sans-serif;
   }
 
   .admin-name {
@@ -47,6 +42,7 @@
     border-radius: 4px;
     font-size: 16px;
     outline: none;
+    font-family: "font1", sans-serif;
   }
 
   .admin-password {
@@ -62,9 +58,9 @@
     border-radius: 4px;
     font-size: 16px;
     outline: none;
+    font-family: "font1", sans-serif;
   }
 
-  
   .privacy-consent input{
     position: relative;
     top: 24px;
@@ -73,10 +69,11 @@
   .privacy-consent label {
     display: block;    
     margin-bottom: 5px;
+    font-family: "font1", sans-serif;
   }
 
   .login-button {
-    background-color: #646cff;
+    background-color: #b79adb;
     width: 70%;
     margin-top: 20px;
     color: white;
@@ -84,13 +81,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     outline: none;
     position: inherit;
+    font-family: "font2", sans-serif;
   }
 
   .login-button:hover {
-    background-color: #535bf2;
+    background-color: #ad89e2;
+    transform: scale(0.9);
   }
 
   .forget-password-button {
@@ -101,11 +100,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 16px;
     outline: none;
     position: relative;
     top: 10px;
     right: 60px;
+    font-family: "font1", sans-serif;
+  }
+  .forget-password-button:hover {
+    transform: scale(1.1);
   }
   
   .register-button {
@@ -115,12 +118,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 16px;
     position: relative;
     outline: none;
     top: 10px;
     left: 60px;
-    
+    font-family: "font1", sans-serif;
+  }
+  .register-button:hover {
+    transform: scale(1.1);
   }
   
   .close-button {
@@ -131,4 +137,9 @@
     cursor: pointer;
     position: inherit;
     margin-left: 400px;
+    font-family: "font2", sans-serif;
+  }
+  .close-button:hover {
+    background: #6c1414;
+    transform: scale(0.9);
   }

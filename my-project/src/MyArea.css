@@ -7,6 +7,7 @@
     overflow: auto;
     text-align: left;
     border: 1px solid black;
+    font-family: "font2", sans-serif;
 }
 
 .mycircle-title {
@@ -100,6 +101,10 @@
     color: white;
     background-color: rgb(243, 186, 182);
 }
+.detail-button:hover {
+    background-color: #beb4be;
+    transform: scale(0.9);
+}
 
 .createCircleContainer {
     position: absolute;
@@ -109,6 +114,7 @@
     height: 600px;
     text-align: left;
     border: 1px solid black;
+    font-family: "font1", sans-serif;
 }
 
 .createTitle{
@@ -189,4 +195,8 @@
     color: white;
     background-color: rgb(243, 186, 182);
     border-bottom: 1px solid black;
+}
+.createCircle:hover {
+    background-color: #beb4be;
+    transform: scale(0.9);
 }

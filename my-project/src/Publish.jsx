@@ -127,6 +127,8 @@ function Publish() {
     if (images.length === 0) {
       images[0] = null;
       formData.append('images', images[0]);
+      alert('至少上传一张图片');
+      return;
     } else {
       const imageUrls = await Promise.all(
         images.map(async (image, index) => {

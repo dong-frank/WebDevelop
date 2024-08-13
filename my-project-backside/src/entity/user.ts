@@ -12,7 +12,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({default:'http//127.0.0.1:3000/default_avatar.jpg'})
   avatar: string;
 
   @ManyToMany(() => InterestCircle, circle => circle.users)

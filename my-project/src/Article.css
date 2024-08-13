@@ -12,6 +12,7 @@
     /* 设置标题字体大小 */
     color: #333;
     /* 设置标题字体颜色 */
+    font-family: "font2", sans-serif;
 }
 
 .time {
@@ -24,6 +25,7 @@
     /* 设置时间字体大小 */
     color: #999;
     /* 设置时间字体颜色 */
+    font-family: "font1", sans-serif;
 }
 
 .view {
@@ -36,6 +38,7 @@
     /* 设置浏览量字体大小 */
     color: #999;
     /* 设置浏览量字体颜色 */
+    font-family: "font1", sans-serif;
 }
 
 .like {
@@ -48,6 +51,7 @@
     /* 设置点赞量字体大小 */
     color: #999;
     /* 设置点赞量字体颜色 */
+    font-family: "font1", sans-serif;
 }
 
 .comment {
@@ -60,6 +64,7 @@
     /* 设置评论量字体大小 */
     color: #999;
     /* 设置评论量字体颜色 */
+    font-family: "font1", sans-serif;
 }
 
 .author {
@@ -79,6 +84,7 @@
     left: 950px;
     font-size: 18px;
     color: #999;
+    font-family: "font2", sans-serif;
 }
 .author-avatar {
     width: 30px;
@@ -99,6 +105,7 @@
     /* 设置名字字体大小 */
     color: #333;
     /* 设置名字字体颜色 */
+    font-family: "font2", sans-serif;
 }
 
 .images-container {
@@ -112,6 +119,7 @@
     margin: 0 auto;
     border: 2px solid #dfdcdc;
     border-radius: 5px;
+    font-family: "font1", sans-serif;
 }
 
 .image-slider {
@@ -119,8 +127,6 @@
     transition: transform 0.5s ease-in-out;
     width: 100%;
     height: 100%;
-
-
 }
 
 .image-slider img {
@@ -211,6 +217,7 @@
     padding: 20px;
     white-space: pre-wrap;
     overflow: auto; /* 添加滚动条 */
+    font-family: "font1", sans-serif;
 }
 
 .right-content {
@@ -278,6 +285,7 @@
     color: #333;
     border: 2px solid #dfdcdc;
     margin: 2px;
+    font-family: "font1", sans-serif;
 }
 
 .comment-input input{
@@ -287,6 +295,7 @@
     height: 50%;
     background-color: #dfdcdc;
     margin: 10px;
+    font-family: "font1", sans-serif;
 }
 
 .comment-input-avatar{
@@ -306,7 +315,12 @@
     width: 60px; /* 调整按钮宽度 */
     height: 30px; /* 调整按钮高度 */
     font-size: 12px; /* 调整字体大小 */
-    background-color: aqua;
+    background-color: rgb(199, 181, 214);
+    font-family: "font2", sans-serif;
+}
+.comment-publish:hover {
+    background-color: rgb(179, 161, 204);
+    transform: scale(1.1);
 }
 
 .comment-container {
@@ -316,6 +330,7 @@
     height: 120px;
     font-size: 16px;
     color: #333;
+    font-family: "font1", sans-serif;
 }
 
 .comment-content {
@@ -326,11 +341,13 @@
     font-size: 16px;
     background-color: #dfdcdc;
     text-align: left;
+    font-family: "font2", sans-serif;
     
 }
 
 .comment-content p{
     margin: 5px;
+    font-family: "font1", sans-serif;
 }
 
 .comment-author {

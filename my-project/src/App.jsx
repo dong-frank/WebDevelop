@@ -68,9 +68,9 @@ function App() {
       <TopNav />
       <div className='carousel'>
         <div className='carousel-item'>
-          <img src='src/assets/UserConfig.jpg' />
-          <img src='src/assets/test2.jpg' />
-          <img src='src/assets/test1.png' />
+          <img src='http://127.0.0.1:3000/封面图片1.jpg' />
+          <img src='http://127.0.0.1:3000/封面图片2.jpg' />
+          <img src='http://127.0.0.1:3000/封面图片3.jpg' />
         </div>
       </div>
 

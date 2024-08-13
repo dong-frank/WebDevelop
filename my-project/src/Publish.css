@@ -111,6 +111,7 @@
   border: none;
   padding: 5px;
   border-bottom: 1px solid black;
+  font-family: "font2", sans-serif;
 }
 
 .content_input {
@@ -124,6 +125,7 @@
   padding: 5px;
   text-align: left;
   resize: none;
+  font-family: "font1", sans-serif;
 }
 
 .title_input::placeholder {
@@ -144,6 +146,7 @@
   flex-direction: column;
   align-items: flex-start; /* 可选：如果你想让按钮左对齐 */
   border-top: 1px solid black;
+  font-family: "font2", sans-serif;
 }
 
 .tags-container {
@@ -173,13 +176,16 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
-.tag.selected {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
+.tag:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.1);
 }
 
+.tag.selected {
+  background-color: #606060;
+  color: white;
+  border-color: #000000;
+}
 
 
 .publish-button button {
@@ -194,4 +200,9 @@
   color: white;
     background-color: rgb(243, 186, 182);
   cursor: pointer;
+  font-family: "font2", sans-serif;
+}
+.publish-button button:hover {
+  background-color: #9f6da1;
+  transform: scale(0.9);
 }

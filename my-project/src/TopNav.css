@@ -18,6 +18,14 @@
     display: inline-block;
     line-height: 20px;
     outline: none;
+    font-family: "font1", sans-serif;
+    font-size: 20px;
+    background-color: #d8ccef;
+  }
+
+  .login-container button:hover {
+    background-color: #b1a9c1;
+    transform: scale(1.1);
   }
   
   .login-container img {
@@ -30,8 +38,9 @@
   
   .welcome-back {
     position: absolute;
-    top: 13px;
+    top: 10px;
     left: 120px;
-    font-size: 15px;
+    font-size: 18px;
     white-space: nowrap;
+    font-family: "font2", sans-serif;
   }

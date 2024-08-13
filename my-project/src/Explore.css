@@ -17,6 +17,7 @@
     margin-bottom: 8px;
     /* 图片与标题之间的间距 */
     margin-top: 0;
+    font-family: "font1", sans-serif;
 }
 
 .masonry-item h {
@@ -24,6 +25,7 @@
     /* 标题字体大小 */
     margin: 10px;
     /* 重置标题的 margin */
+    font-family: "font2", sans-serif;
 }
 
 .masonry-item p {
@@ -33,4 +35,5 @@
     /* 重置摘要的 margin */
     text-align: right;
     color: #999;
+    font-family: "font1", sans-serif;
 }

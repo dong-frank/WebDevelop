@@ -40,6 +40,25 @@ export class LoginController {
       return { message: "登录成功",token };
   }
 
+  @Post("/register")
+  async register(@Body() body:{username:string,password:string}) {
+    if (!AppDataSource.isInitialized) {
+      await AppDataSource.initialize();
+    }
+    const { username , password } = body;
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOne({ where: {username}});
+    if (user) {
+      this.ctx.status = 401;
+      return { message: "注册失败，用户名已存在" };
+    }
+    const newUser = new User();
+    newUser.username = username;
+    newUser.password = password;
+    await userRepository.save(newUser);
+    return { message: "注册成功" };
+  }
+
   @Get("/userdata")
     async getUserData(@Headers('authorization') token: string) {
 
